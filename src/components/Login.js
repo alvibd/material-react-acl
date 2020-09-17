@@ -91,7 +91,7 @@ export default function Login() {
 
         enqueueSnackbar("Logging in, please wait", {
             variant : 'info',
-            persist: false
+            persist: true
         })
         
         login(data.email, data.password)(dispatch, state)

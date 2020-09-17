@@ -1,11 +1,19 @@
 import axios from 'axios'
 import createAuthRefreshInterceptor from 'axios-auth-refresh'
 
-export const uploadPostMedia = (state, dispatch, file_type, files, post) => 
+export const uploadPostMedia = (state, dispatch, formData, post) => 
 {
-    const formData = new FormData();
-    formData.append('file_type', file_type);
-    formData.append('files', files);
+    // const formData = new FormData();
+    // formData.append('file_type', file_type);
+    // // formData.append('files', [files]);
+
+    // const arr = []
+
+    // Array.from(files).forEach((f, index) => {
+    //     arr[index] = f
+    // })
+
+    // formData.append('files', arr)
 
     refreshToken(dispatch, state)
 

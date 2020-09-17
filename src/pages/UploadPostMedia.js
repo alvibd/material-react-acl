@@ -81,7 +81,7 @@ export default function UploadPostMedia(props) {
             persist: true
         })
 
-        uploadPostMedia(state, dispatch, data.file_type, data.files, data.post).then((res) => {
+        uploadPostMedia(state, dispatch, formData(), data.post).then((res) => {
             enqueueSnackbar(res.data.message, {
                 variant : 'success',
                 persist: false
@@ -92,6 +92,17 @@ export default function UploadPostMedia(props) {
         }).catch((err) => {
             showError(err)
         })
+    }
+
+    const formData = () => {
+        const formData = new FormData();
+
+        formData.append('file_type', data.file_type);
+        data.files.forEach((file) => {
+            formData.append('files[]', file, file.name)
+        })
+
+        return formData
     }
 
     const showError = (err) => {
