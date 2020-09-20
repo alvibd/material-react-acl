@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -93,7 +94,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
   const classes = useStyles();
-  const theme = createMuiTheme({palette: {type: 'dark'}});
+  const theme = createMuiTheme({
+    palette: {
+      type: 'dark',
+      primary: {
+        light: '#ffcb5d',
+        main: '#f79a2b',
+        dark: '#bf6b00',
+        contrastText: '#333333',
+      },
+      secondary: {
+        light: '#f18b3a',
+        main: '#b95d02',
+        dark: '#833100',
+        contrastText: '#333333',
+      },
+    }
+  });
   const [open, setOpen] = React.useState(false);
   
   const handleDrawerOpen = () => {
