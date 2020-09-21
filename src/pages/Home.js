@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -33,6 +33,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
     const classes = useStyles();
+
+    const initialState = {
+        item: 0,
+        data: [],
+        pagination: [],
+    }
+
+    const [state, setState] = useState(initialState)
+
+    useEffect(() => {
+        
+    }, [state.data])
 
     return (
         <div className={classes.root}>
