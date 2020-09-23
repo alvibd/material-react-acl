@@ -31,9 +31,9 @@ function PrivateRoute ({ component: Component, ...rest }) {
     //   {...rest}
     //   render={(props) => {
     //     if (state.isLoading) {
-    //       return <h2>Loading...</h2>;
+    //       return <WindMillLoading />;
     //     } else if (!state.isAuthenticated) {
-    //       return <Redirect to="/login" />;
+    //       return <Redirect to={route('welcome')} />;
     //     } else {
     //       return <Component {...props} />;
     //     }
