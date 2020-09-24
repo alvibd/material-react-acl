@@ -13,6 +13,9 @@ export const route = (name, options = {}) => {
         case 'upload_post_media':
             to="/upload_post_media/:id"
             break;
+        case 'view_content':
+            to = '/content/:id'
+            break
         default:
             break;
     }

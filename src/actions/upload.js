@@ -17,8 +17,7 @@ export const uploadPostMedia = (state, dispatch, formData, post) =>
 
     refreshToken(dispatch, state)
 
-    return axios
-        .post(state.api_url+'/api/create_post/'+post+'/upload', formData, tokenConfig(state))
+    return axios.post('/api/create_post/'+post+'/upload', formData, tokenConfig(state))
         .then((res) => {
 
             // console.log(res)
@@ -36,6 +35,7 @@ export const uploadPostMedia = (state, dispatch, formData, post) =>
         })
         .catch((err) => {
             // dispatch(returnErrors(err.response.data, err.response.status));
+            console.log(err)
             
             throw err
         })
@@ -53,6 +53,10 @@ const tokenConfig = (state) => {
             // 'Access-Control-Request-Headers': 'Authorization',
             'Accept': 'application/json',
         },
+        proxy: {
+            host: 'localhost',
+            port: 8000
+        }
     };
 
     // If token, add to headers config

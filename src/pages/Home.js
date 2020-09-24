@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -37,8 +38,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
     const classes = useStyles();
 
+    const history = useHistory()
+
     const initialState = {
-        item: 0,
         contents: [],
         pagination: [],
         isLoading : true,
@@ -65,8 +67,13 @@ export default function Home() {
         const getContents = () => {
             return axios.get(state.api_url+'/api/contents', {cancelToken: source.token}, config)
             .then((res) => {
-                console.log(res.data.data)
-                setData({...data, contents: res.data.data, isLoading: false})
+                console.log(res)
+                setData({
+                    ...data,
+                    contents: res.data.data,
+                    isLoading: false,
+                    pagination: res.data.meta
+                })
             })
         }
 
@@ -77,6 +84,11 @@ export default function Home() {
         })
          
     },[])
+
+    const handleView = (e) => {
+        // console.log(e.target.dataset.id)
+        history.push('/content/'+e.target.dataset.id)
+    }
 
     const ContentList = data.contents.map((content) => 
         <Grid item xs={12} md={4} key={content.id}>
@@ -93,22 +105,25 @@ export default function Home() {
                     </Grid>
                     <Grid item xs={12} md={6} container>
                         <Grid item xs container direction="column" spacing={2}>
-                        <Grid item xs>
-                            <Typography gutterBottom variant="subtitle1">
-                            {content.caption}
-                            </Typography>
-                            <Typography variant="body2" gutterBottom>
-                            Description: {content.description}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                            view count: {content.view_count}
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                            Edit
-                            </Typography>
-                        </Grid>
+                            <Grid item xs>
+                                <Typography gutterBottom variant="subtitle1">
+                                {content.caption}
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                Description: {content.description}
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                view count: {content.view_count}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body2" style={{ cursor: 'pointer' }} data-id={content.id}>
+                                Edit
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="subtitle1" style={{ cursor: 'pointer' }} onClick={handleView} data-id={content.id}>View</Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

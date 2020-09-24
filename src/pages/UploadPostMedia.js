@@ -163,6 +163,7 @@ export default function UploadPostMedia(props) {
                 acceptedFiles={[data.file_type]}
                 dropzoneText={"Drag and drop an file here or click"}
                 onChange={(files) => setdata({...data, files: files})}
+                maxFileSize={30000000}
                 />
                 <Button
                 type="submit"

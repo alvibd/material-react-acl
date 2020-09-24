@@ -26,6 +26,7 @@ import PrivateRoutes from './common/PrivateRoutes'
 import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
 import UploadPostMedia from './pages/UploadPostMedia'
+import Content from './pages/Content';
 
 const drawerWidth = 240;
 
@@ -197,6 +198,7 @@ export default function App() {
       <PrivateRoutes exact path={route('home')} component={Home} />
       <PrivateRoutes exact path={route('create_post')} component={CreatePost} />
       <PrivateRoutes path={route('upload_post_media')} component={UploadPostMedia} />
+      <PrivateRoutes path={route('view_content')} component={Content} />
       </Switch>
       </main>
       </div>
